@@ -1,0 +1,5 @@
+There are several things to consider when deleting a customer from the customer's table. First, if you aren't completely certain, you might want to test out the delete on a copy of the table. Also, you could first code a select statement to make sure you have identified the correct customer.
+If multiple other people are using the database, any changes you make could affect their work as well. That is why making a copy of the table first or being absolutely certain you are selecting the correct information is so important.
+You will have to make sure MySQL Workbench is not in safe update mode. If it is, you will have to go to preferences to turn that off.
+If the where clause is omitted, you could end up accidentallyl deleting all row in the table.
+Since customer_id is a foreign key in the orders table, the orders corresponding to the customer_id would have to be deleted from the orders table first. The order_id of any order from that customer_id would also be used to identify related rows in the order_details table. These rows would have to be deleted as well before deleting a customer.
